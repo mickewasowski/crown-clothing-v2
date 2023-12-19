@@ -45,6 +45,7 @@ export const signInWithGoogleRedirect = () =>
 
 export const db = getFirestore();
 
+//this is how we batch import our data to firebase => //addCollectionAndDocuments('categories', SHOP_DATA);
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd,
