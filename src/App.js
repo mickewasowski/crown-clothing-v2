@@ -10,7 +10,6 @@ const Navigation = lazy(() => import('./routes/navigation/navigation.component')
 const Shop = lazy(() => import('./routes/shop/shop.component'));
 const Checkout = lazy(() => import('./routes/checkout/checkout.component'));
 
-
 const App = () => {
   const dispatch = useDispatch();
 
