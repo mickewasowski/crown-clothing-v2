@@ -1,6 +1,8 @@
-import { getByText, queryByText, screen } from "@testing-library/react";
+import { screen, fireEvent, waitFor } from "@testing-library/react";
+import * as reactRedux from 'react-redux';
 import { renderWithProviders } from "../../../utils/test/test.utils";
 import Navigation from "../navigation.component";
+import { signOutStart } from "../../../store/user/user.action";
 
 describe('Navigation tests', () => {
     it('should render a sign in link and not sign out if there is no currentUser', () => {
@@ -63,5 +65,26 @@ describe('Navigation tests', () => {
 
         const cartDropdown = screen.getByText('Your cart is empty');
         expect(cartDropdown).toBeInTheDocument();
+    });
+
+    it('should dispatch signOutStart action when clicking on the sign out button', async () => {
+        const mockDispatch = jest.fn();
+        jest.spyOn(reactRedux, 'useDispatch').mockReturnValue(mockDispatch);
+
+        renderWithProviders(<Navigation />, {
+            preloadedState: {
+                user: {
+                    currentUser: {}
+                }
+            }
+        });
+        const signOutElem = screen.getByText(/sign out/i);
+        expect(signOutElem).toBeInTheDocument();
+        
+        await fireEvent.click(signOutElem);
+        expect(mockDispatch).toHaveBeenCalled();
+        expect(mockDispatch).toHaveBeenCalledWith(signOutStart());
+
+        mockDispatch.mockClear();
     });
 });
