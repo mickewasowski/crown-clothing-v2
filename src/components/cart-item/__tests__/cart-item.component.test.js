@@ -15,8 +15,12 @@ describe('Cart Item tests', () => {
 
         const imgElem = screen.getByAltText(/item/i, { exact: false });
         const itemNameElem = screen.getByText(/item/i, { exact: false });
+        // const quantitySpan = screen.getByText(/2\s*x\s*\$\s*10/m);
+        const quantitySpan = screen.getByText(/2 x \$10/m);
+
 
         expect(imgElem).toBeInTheDocument();
         expect(itemNameElem).toBeInTheDocument();
+        expect(quantitySpan).toBeInTheDocument();
     });
 });
