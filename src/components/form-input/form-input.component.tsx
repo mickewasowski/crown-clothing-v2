@@ -9,9 +9,9 @@ type FormInputProps = {
 const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
   return (
     <Group>
-      <Input {...otherProps} />
+      <Input data-testid='form-input' {...otherProps} />
       {label && (
-        <FormInputLabel shrink={Boolean(otherProps.value && typeof otherProps.value === 'string' && otherProps.value.length)}>
+        <FormInputLabel data-testid='form-label' shrink={Boolean(otherProps.value && typeof otherProps.value === 'string' && otherProps.value.length)}>
           {label}
         </FormInputLabel>
       )}
